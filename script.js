@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function startCardLoader() {
         const duration = 2400;
         const steps = [
-            { threshold: 20, text: 'Loading Hydrangea.css...' },
+            { threshold: 20, text: 'Loading Flower.css...' },
             { threshold: 50, text: 'Assembling 3D florets...' },
             { threshold: 80, text: 'Blending pastel gradients...' },
             { threshold: 95, text: 'Preparing spherical bloom...' },
