@@ -233,6 +233,7 @@ body {
     transform: scale(0.95);
 }
 
+/* ===== ปรับแต่งจุดนี้เพื่อแก้ปัญหากระตุก ===== */
 .rose-wrapper {
     transform-style: preserve-3d;
     position: relative;
@@ -240,6 +241,7 @@ body {
     height: 480px;
     transform: rotateX(-20deg) rotateY(0deg);
     will-change: transform;
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .rose-wrapper.rotating {
@@ -247,8 +249,12 @@ body {
 }
 
 @keyframes rotateRose {
-    from { transform: rotateX(-20deg) rotateY(0deg); }
-    to { transform: rotateX(-20deg) rotateY(360deg); }
+    0% {
+        transform: rotateX(-20deg) rotateY(0deg);
+    }
+    100% {
+        transform: rotateX(-20deg) rotateY(360deg);
+    }
 }
 
 .stem-group {
@@ -407,7 +413,6 @@ body {
     opacity: 1;
 }
 
-/* ===== Hydrangea Floret 3D Structure ===== */
 .floret {
     position: absolute;
     top: 0;
@@ -449,7 +454,6 @@ body {
     box-shadow: 0 0 8px rgba(140, 160, 255, 0.3);
 }
 
-/* Hydrangea Color Variations */
 .floret-blue .floret-petal {
     background: linear-gradient(to top, #5271ff 0%, #8ca0ff 60%, #c4d0ff 100%);
 }
@@ -466,7 +470,6 @@ body {
     background: linear-gradient(to top, #3b93ff 0%, #7db9ff 60%, #d4e8ff 100%);
 }
 
-/* Falling Petal Styles */
 .falling-petal {
     position: fixed;
     width: var(--fp-w, 12px);
