@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createHydrangeaCluster() {
-        const totalFlorets = 90; // จำนวนดอกย่อย 90 ดอกแน่นๆ ครอบคลุมทรงกลม
+        const totalFlorets = 90;
         const radius = 75;
 
         for (let i = 0; i < totalFlorets; i++) {
@@ -64,19 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const colorClass = FLORET_TYPES[Math.floor(Math.random() * FLORET_TYPES.length)];
             floret.className = `floret ${colorClass}`;
 
-            // คำนวณมุมตามแนวแกน (Spherical Coordinates)
-            // phi: มุมแนวตั้งจากบนลงล่าง (0 ถึง PI)
-            // theta: มุมหมุนวนรอบวงกลม 360 องศา (0 ถึง 2*PI) - **ครบ 360° ไม่มีแหว่ง**
             const phi = Math.acos(-1 + (2 * i) / totalFlorets);
-            const theta = (2 * Math.PI * i) / totalFlorets;  // ← แก้: ใช้ i โดยตรงให้ได้ 0-2π เต็มๆ
+            const theta = Math.sqrt(totalFlorets * Math.PI) * phi;
 
-            // พิกัด 3D
             const x = radius * Math.cos(theta) * Math.sin(phi);
             const y = radius * Math.sin(theta) * Math.sin(phi) - 10;
             const z = radius * Math.cos(phi);
 
-            // การแปลงมุมเป็น Degree สำหรับ CSS Transform
-            // ใช้ theta ตรงๆ ในการหมุนรอบแกน Y เพื่อให้ครอบคลุมครบ 360° รอบด้าน ไม่แหว่งแน่นอน
+            // ปรับทิศทางการหันหน้ากลีบดอกย่อยให้หันออกจากจุดศูนย์กลางธรรมชาติ
             const ry = (theta * 180) / Math.PI;
             const rx = (phi * 180) / Math.PI - 90;
 
