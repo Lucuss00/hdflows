@@ -55,22 +55,20 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(animateLoader);
     }
 
-    // สร้างพุ่มดอกไฮเดรนเยีย 3D ทรงกลม (Fibonacci Sphere Distribution)
     function createHydrangeaCluster() {
-        const totalFlorets = 85; // จำนวนดอกย่อยในช่อ
-        const radius = 75; // รัศมีทรงกลมของช่อ
+        const totalFlorets = 85;
+        const radius = 75;
 
         for (let i = 0; i < totalFlorets; i++) {
             const floret = document.createElement('div');
             const colorClass = FLORET_TYPES[Math.floor(Math.random() * FLORET_TYPES.length)];
             floret.className = `floret ${colorClass}`;
 
-            // คำนวณจุดบนพิกัดทรงกลมกระจายตัวแบบธรรมชาติ
             const phi = Math.acos(-1 + (2 * i) / totalFlorets);
             const theta = Math.sqrt(totalFlorets * Math.PI) * phi;
 
             const x = radius * Math.cos(theta) * Math.sin(phi);
-            const y = radius * Math.sin(theta) * Math.sin(phi) - 10; // เยื้องขึ้นเล็กน้อย
+            const y = radius * Math.sin(theta) * Math.sin(phi) - 10;
             const z = radius * Math.cos(phi);
 
             const ry = (theta * 180) / Math.PI;
@@ -87,12 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
             floret.style.setProperty('--delay', `${delay.toFixed(2)}s`);
             floret.style.setProperty('--scale', scale.toFixed(2));
 
-            // เกสรศูนย์กลาง
             const center = document.createElement('div');
             center.className = 'floret-center';
             floret.appendChild(center);
 
-            // สร้าง 4 กลีบย่อยของแต่ละดอกเล็ก
             for (let j = 0; j < 4; j++) {
                 const petal = document.createElement('div');
                 petal.className = 'floret-petal';
@@ -183,11 +179,12 @@ document.addEventListener('DOMContentLoaded', () => {
         await delay(100);
         bloom();
 
+        /* ปรับดีเลย์ตรงนี้เป็น 3400ms ให้กลีบแผ่ขยายสุดก่อน แล้วเริ่มหมุนนุ่มๆ */
         setTimeout(() => {
             roseWrapper.classList.add('rotating');
-        }, 2600);
+        }, 3400);
 
-        setTimeout(() => startFallingPetals(), 3400);
+        setTimeout(() => startFallingPetals(), 3800);
 
         setTimeout(() => {
             endText.classList.add('visible');
